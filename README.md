@@ -5,10 +5,10 @@ published as model packages. TERRA lists them on its **Models** screen from
 `catalog.json` in this repository, and installs a package only after its zip
 matches the SHA-256 the catalogue gives for it.
 
-| Model | Package | Size | Needs | Zip SHA-256 |
-|---|---|---|---|---|
-| Random Forest 1.0.0 | [`spectral-1.0.0.zip`](https://github.com/rexionmars/TERRA-models/releases/tag/spectral-1.0.0) | 14.8 MB | | `cdced7833e6d752087463b6285e676cf86128659bebda6e09497cfe49c2b311c` |
-| Temporal Transformer 1.0.0 | [`temporal_transformer-1.0.0.zip`](https://github.com/rexionmars/TERRA-models/releases/tag/temporal_transformer-1.0.0) | 1.7 MB | `torch` | `8710f22daa797397c232e7ba524e73cc197034ae0e0a2f4a936c3eb7f5cb775c` |
+| Model | Packaged by | Package | Size | Needs | Zip SHA-256 |
+|---|---|---|---|---|---|
+| Random Forest 1.0.0 | João Leonardi | [`spectral-1.0.0.zip`](https://github.com/rexionmars/TERRA-models/releases/tag/spectral-1.0.0) | 14.8 MB | | `a07eda60aa11a673e3385bc662f97469cbcb6ab50bc64c9b0bea9b58ce039ffc` |
+| Temporal Transformer 1.0.0 | João Leonardi | [`temporal_transformer-1.0.0.zip`](https://github.com/rexionmars/TERRA-models/releases/tag/temporal_transformer-1.0.0) | 1.7 MB | `torch` | `7334541ef48908d0418ad23675f259e177da2556e1f3d965b7f3a6f4b3fe2819` |
 
 Both classify Sentinel-2 L2A series into the MapBiomas classes 3, 21, 25, 39 and
 41, and were fitted for western Paraná. Each package's `model.json` states what
