@@ -11,8 +11,8 @@ matches the SHA-256 the catalogue gives for it.
 
 | Model | Packaged by | Package | Size | Needs | Zip SHA-256 |
 |---|---|---|---|---|---|
-| Random Forest 1.0.0 | João Leonardi | [`spectral-1.0.0.zip`](https://github.com/rexionmars/TERRA-models/releases/tag/spectral-1.0.0) | 14.8 MB | | `a07eda60aa11a673e3385bc662f97469cbcb6ab50bc64c9b0bea9b58ce039ffc` |
-| Temporal Transformer 1.0.0 | João Leonardi | [`temporal_transformer-1.0.0.zip`](https://github.com/rexionmars/TERRA-models/releases/tag/temporal_transformer-1.0.0) | 1.7 MB | `torch` | `7334541ef48908d0418ad23675f259e177da2556e1f3d965b7f3a6f4b3fe2819` |
+| Random Forest 1.0.1 | João Leonardi | [`spectral-1.0.1.zip`](https://github.com/rexionmars/TERRA-models/releases/tag/spectral-1.0.1) | 14.9 MB | | `2b45bb9937c8ed48139fd11b5469888f5963ba9c5fcaa995bbc1df284a519792` |
+| Temporal Transformer 1.0.1 | João Leonardi | [`temporal_transformer-1.0.1.zip`](https://github.com/rexionmars/TERRA-models/releases/tag/temporal_transformer-1.0.1) | 1.7 MB | `torch` | `710826c3ab48b042d0de669ec1e421d45e0c2e9730ca5ac7bce57809daaab4cc` |
 
 Both classify Sentinel-2 L2A series into the MapBiomas classes 3, 21, 25, 39 and
 41, and were fitted for western Paraná. Each package's `model.json` states what
@@ -40,7 +40,8 @@ which makes reproducible zips; neither is edited by hand.
 The weights are released under the MIT licence, in [LICENSE](LICENSE). They were
 trained against land-cover maps of the [MapBiomas](https://brasil.mapbiomas.org)
 project, which are published under CC BY 4.0. Each card picture is credited in
-its package's `model.json`.
+its package's `model.json`; the pictures of the 1.0.1 packages show Esri World
+Imagery, which the MIT licence does not cover.
 
 The banner is not covered by the MIT licence. Its photograph is by kokorevas on
 [Pexels](https://www.pexels.com/photo/28766209/), used under the
