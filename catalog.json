@@ -330,33 +330,199 @@
           "url": "https://github.com/rexionmars/TERRA-models/releases/download/gp_series-0.1.0/gp_series-0.1.0.zip"
         }
       ]
+    },
+    {
+      "manifest": {
+        "format": 1,
+        "id": "observation_noise",
+        "version": "0.1.0",
+        "name": "Observation noise",
+        "family": "noise_table",
+        "task": "observation_quality",
+        "summary": "Gives each date of a field's Sentinel-2 series its own noise, per band and index, from the share of the polygon that was clear on that date.",
+        "classes": [],
+        "modes": [],
+        "requires": [],
+        "reads": [
+          {
+            "label": "Series",
+            "value": "One acquisition per date: the median of B02, B03, B04, B08, NDVI and EVI over the polygon's clear pixels, and the share of it that was clear"
+          }
+        ],
+        "method": [
+          {
+            "label": "Bands",
+            "value": "Clear share from 0.3 to 0.6, 0.6 to 0.9, 0.9 to 0.99, and 0.99 or more"
+          },
+          {
+            "label": "Deviation",
+            "value": "Square root of the Cressie-Hawkins semivariance of differences between dates 1 to 5 days apart, the band set by the less clear date of the pair"
+          }
+        ],
+        "evaluation": {
+          "method": "Measured on 30 development fields in Mato Grosso read by TERRA itself, and checked on 17 others, with a field bootstrap.",
+          "figures": [
+            {
+              "label": "Noise at 0.3 to 0.6 clear over noise at 0.99 or more",
+              "value": "2.6 to 3.2×"
+            },
+            {
+              "label": "NDVI noise, fully clear dates",
+              "value": "0.026"
+            }
+          ],
+          "source": "TERRA signal and spectrum models, observation_noise 0.1.0 fit"
+        },
+        "limits": [
+          "Measured in Mato Grosso only; for any other region the model says it was not measured.",
+          "On the validation fields the noise of the least clear dates was larger than on the training fields (NDVI 0.129 against 0.072), so the table may understate it.",
+          "The clear share predicts the size of the noise, not its heavy tail; one-date excursions are the work of Transient excursions."
+        ],
+        "license": "MIT",
+        "doi": null,
+        "packaged_by": [
+          {
+            "name": "João Leonardi"
+          }
+        ],
+        "picture": {
+          "subject": "an area east of Sorriso, Mato Grosso, September 2024 to August 2025, read by TERRA: each date's NDVI as an orange dot, with this model's noise for that date as a bar of one standard deviation either side",
+          "author": "João Leonardi, in TERRA. Contains modified Copernicus Sentinel data 2024–2025",
+          "license": "CC BY 4.0",
+          "source": "https://planetarycomputer.microsoft.com/dataset/sentinel-2-l2a"
+        },
+        "files": {
+          "parameters": {
+            "name": "parameters.json",
+            "sha256": "4c61e89cd4eb4140182d2d967cb0b70a8b48b134c9950f3b526be87676aad4b2",
+            "size": 980
+          },
+          "picture": {
+            "name": "picture.webp",
+            "sha256": "2a33490d2993144a51078b18d1e91de55cafacbbe3f0b4e184a2ef9a6d2ea36f",
+            "size": 9828
+          }
+        }
+      },
+      "digest": "e352b27373d2d739a1bafbaca191b491b93039ee8dff7b23fcb05ef1a2c1da4e",
+      "picture_uri": "data:image/webp;base64,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",
+      "package": {
+        "name": "observation_noise-0.1.0.zip",
+        "sha256": "f5308b1285f6acfa4f04db7d75deb38a60dd8fb48beed38f1f5ba1731b909031",
+        "size": 13829
+      },
+      "sources": [
+        {
+          "name": "GitHub",
+          "url": "https://github.com/rexionmars/TERRA-models/releases/download/observation_noise-0.1.0/observation_noise-0.1.0.zip"
+        }
+      ]
+    },
+    {
+      "manifest": {
+        "format": 1,
+        "id": "transient_excursions",
+        "version": "0.1.0",
+        "name": "Transient excursions",
+        "family": "excursion_detector",
+        "task": "observation_quality",
+        "summary": "Marks the dates on which a field is briefly brighter in blue, or darker in blue and near infrared, than in the 15 days before and after, without the scene classification layer.",
+        "classes": [],
+        "modes": [],
+        "requires": [],
+        "reads": [
+          {
+            "label": "Series",
+            "value": "One acquisition per date of a field: the median of B02 and B08 over the polygon's clear pixels"
+          }
+        ],
+        "method": [
+          {
+            "label": "Neighbourhoods",
+            "value": "The median of the acquisitions up to 15 days before, and separately up to 15 days after; at least 3 in all, one on each side"
+          },
+          {
+            "label": "Residual",
+            "value": "The smaller departure from the two sides when both have the same sign, zero otherwise"
+          },
+          {
+            "label": "Flags",
+            "value": "Bright: blue z above 3. Shadow: blue and near-infrared z below −3. z is the residual over 1.4826 times the field's median absolute non-zero residual"
+          }
+        ],
+        "evaluation": {
+          "method": "Removal of the marked dates against 200 random removals of as many dates, on the short-term noise ratio of six bands the detector does not read, on development fields in Bahia, Mato Grosso and Paraná, from another reading of the same Sentinel-2 scenes.",
+          "figures": [
+            {
+              "label": "Dates marked, Paraná",
+              "value": "2.1 %"
+            },
+            {
+              "label": "Heavy-tail excess removed, Paraná",
+              "value": "27 % to 67 %"
+            },
+            {
+              "label": "Heavy-tail excess removed, Bahia",
+              "value": "4 % to 10 %"
+            },
+            {
+              "label": "Heavy-tail excess removed, Mato Grosso",
+              "value": "5 % in two bands, none in four"
+            },
+            {
+              "label": "Dates marked in pure noise",
+              "value": "0.4 %"
+            }
+          ],
+          "source": "TERRA signal and spectrum models, transient excursion detector test"
+        },
+        "limits": [
+          "Weak in Mato Grosso and Bahia, where most of the heavy tail is something it does not mark.",
+          "A date is marked only when it departs from both sides in the same direction, so a change that lasts, such as a harvest, is not marked.",
+          "A one-date change that is real, not contamination, is marked all the same."
+        ],
+        "license": "MIT",
+        "doi": null,
+        "packaged_by": [
+          {
+            "name": "João Leonardi"
+          }
+        ],
+        "picture": {
+          "subject": "an area east of Sorriso, Mato Grosso, September 2024 to August 2025, read by TERRA: each date's NDVI as an orange dot, with a blue triangle above a date this model marked as briefly brighter and below one it marked as briefly darker",
+          "author": "João Leonardi, in TERRA. Contains modified Copernicus Sentinel data 2024–2025",
+          "license": "CC BY 4.0",
+          "source": "https://planetarycomputer.microsoft.com/dataset/sentinel-2-l2a"
+        },
+        "files": {
+          "parameters": {
+            "name": "parameters.json",
+            "sha256": "c3bad5b6f54626ff64561f228b17490dfaf9223eef6073de872818b659b256a8",
+            "size": 137
+          },
+          "picture": {
+            "name": "picture.webp",
+            "sha256": "ea6de4a746f22bd9f0598ed8c1fd7b07002024842430cdcbefda1b208132582e",
+            "size": 7072
+          }
+        }
+      },
+      "digest": "67285517d696ad1cc7d04581dfd560e5305e5a54aff22975948b9e655b1f601c",
+      "picture_uri": "data:image/webp;base64,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",
+      "package": {
+        "name": "transient_excursions-0.1.0.zip",
+        "sha256": "82d97a22fa924e350a226580174e900fc93001047e56ee76137ec99e6572f92c",
+        "size": 10829
+      },
+      "sources": [
+        {
+          "name": "GitHub",
+          "url": "https://github.com/rexionmars/TERRA-models/releases/download/transient_excursions-0.1.0/transient_excursions-0.1.0.zip"
+        }
+      ]
     }
   ],
   "upcoming": [
-    {
-      "id": "observation_noise",
-      "name": "Observation noise",
-      "task": "observation_quality",
-      "summary": "Gives each date of a field's Sentinel-2 series its own noise, from how many of the field's points were clear on that date.",
-      "status": "Measured on fields in Bahia, Mato Grosso and Paraná, from another reading of the same Sentinel-2 scenes: over 1 to 5 days, the noise's standard deviation is 2.6 to 5.9 times larger on dates with one to three clear points than on dates with all nine. It waits to be measured again on series read by TERRA itself, and to be packaged.",
-      "limits": [
-        "The count of clear points predicts the size of the noise, not its heavy tail: the largest departures come on dates where every point was clear.",
-        "Dates with few clear points may also carry more haze and shadow on the rest of the scene, so not all of their extra noise need come from the count.",
-        "Measured on nine points per field. How it carries over to the clear pixels of a polygon, as TERRA reads them, has not been checked."
-      ]
-    },
-    {
-      "id": "transient_excursions",
-      "name": "Transient excursions",
-      "task": "observation_quality",
-      "summary": "Marks the dates on which a field is briefly brighter in blue, or darker in blue and near infrared, than in the 15 days before and after, without the scene classification layer.",
-      "status": "Tested on fields in Bahia, Mato Grosso and Paraná, from another reading of the same Sentinel-2 scenes: it accounts for 26 % to 62 % of the excess in the noise's heavy tail in Paraná, and for less than 10 % in Mato Grosso and Bahia. Whether it becomes a model of its own or part of Observation noise is not decided.",
-      "limits": [
-        "Weak in Mato Grosso and Bahia, where most of the heavy tail is something it does not mark.",
-        "After the marked dates are removed, the noise still has a heavy tail in every region.",
-        "A date is marked only when it departs from both sides in the same direction, so a change that lasts, such as a harvest, is not marked."
-      ]
-    },
     {
       "id": "series_events",
       "name": "Series events",
